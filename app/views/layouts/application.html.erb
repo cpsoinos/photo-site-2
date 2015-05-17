@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PhotoSite2</title>
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <%= link_to (image_tag "logo-01.png"), root_path, class: "navbar-brand" %>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li><%= link_to "HOME", root_path %></li>
+            <li><%= link_to "DESIGN", "#" %></li>
+            <li><%= link_to "PHOTOGRAPHY", "#" %></li>
+            <li><%= link_to "ABOUT", "#" %></li>
+            <%- if current_user -%>
+              <li><%= link_to 'Sign Out', destroy_user_session_path, method: :delete %></li>
+            <%- else -%>
+              <li><%= link_to 'Sign Up', new_user_registration_path %></li>
+              <li><%= link_to 'Sign In', new_user_session_path %></li>
+            <%- end -%>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+  <%- flash.each do |key, value| -%>
+    <div class="flash flash-<%= key %>">
+      <%= value %>
+    </div>
+  <%- end -%>
+
+  <%= yield %>
+
+  <%= javascript_include_tag 'application' %>
+  <%= yield :extra_footer %>
+</body>
+</html>
