@@ -17,6 +17,7 @@
 
 body {
   background-color: #FAFAFA;
+  font-family: 'BebasNeue';
 }
 
 nav.navbar {
@@ -31,11 +32,12 @@ nav.navbar {
 }
 
 #bs-example-navbar-collapse-1 > ul > li > a {
-  font-family: BebasNeueRegular, Arial, sans-serif;
+  /* font-family: BebasNeueRegular, Arial, sans-serif;
   src:url('BebasNeue Regular.otf');
-  src:url('BebasNeue Regular.otf?#iefix') format('embedded-opentype');
+  src:url('BebasNeue Regular.otf?#iefix') format('embedded-opentype'); */
   font-weight: normal;
   font-style: normal;
+  font-size: 16px;
   letter-spacing: 1px;
   text-transform: uppercase;
   color: #E88700;
@@ -48,4 +50,15 @@ nav.navbar {
  &:hover {
    color: black;
  }
+}
+
+footer {
+  margin-top: 1em;
+  padding-top: 1em;
+  border-top-width: 1px;
+  border-top-style: solid;
+
+  small {
+    font-size: 0.9166666em;
+  }
 }
