@@ -1,0 +1,8 @@
+<ul>
+  <% @categories.each do |category| %>
+    <div class="col-xs-4">
+      <%= image_tag(category.photos.first.image.category_thumb) %> </br>
+      <li><%= link_to category.name, category_path(category) %></li>
+    </div>
+  <% end %>
+</ul>

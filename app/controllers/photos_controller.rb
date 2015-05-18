@@ -1,29 +1,28 @@
 class PhotosController < ApplicationController
 
-  def index
-    @photos = Photo.all
-    @categories = Category.all
-  end
-
   def new
+    @category = Category.find(params[:category_id])
     @photo = Photo.new
   end
 
   def create
-    @photo = Photo.new(name: photo_name)
-    binding.pry
-    if @photo.save
-      flash[:notice] = "Photo uploaded!"
-      redirect_to photo_path(@photo)
-    else
-      render :new
+    @category = Category.find(params[:category_id])
+    images = photo_params
+    images.each do |image|
+      photo = @category.photos.new(image: image)
+      photo.name = image.original_filename
+      unless photo.save
+        render :new
+      end
     end
+    redirect_to category_path(@category)
   end
 
   private
 
   def photo_params
-    params.require(:photo).permit(:category_id, :image)
+    params[:photo][:image]
+    # params.require(:photo).permit(:image)
   end
 
   def photo_name
